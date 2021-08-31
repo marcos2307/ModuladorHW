@@ -34,10 +34,10 @@ module ROM(
    wire [ROM_ADDR_BITS-1:0] addr2;
 	wire [ROM_ADDR_BITS-1:0] addr3;
    initial
-      $readmemh("ValoresDeComparacion.txt", ROM, 0, 255);
+      $readmemh("ValoresDeComparacion", ROM, 0, (2**ROM_ADDR_BITS)-1);
 	
-	assign addr2 = addr + 85;
-	assign addr3 = addr + 171;
+	assign addr2 = (addr + 21845)%(2**16);
+	assign addr3 = (addr + 43691)%(2**16);
 	
    assign out1 = ROM[addr];
 	assign out2 = ROM[addr2];
