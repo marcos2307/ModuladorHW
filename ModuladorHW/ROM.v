@@ -35,7 +35,7 @@ module ROM(
    wire [ROM_ADDR_BITS-1:0] addr2;
 	wire [ROM_ADDR_BITS-1:0] addr3;
    initial
-      $readmemh("ValoresDeComparacion", ROM, 0, (2**ROM_ADDR_BITS)-1);
+      $readmemh("triang", ROM, 0, (2**ROM_ADDR_BITS)-1);
 	
 	assign addr2 = (addr + 21845)%(2**ROM_ADDR_BITS);
 	assign addr3 = (addr + 43691)%(2**ROM_ADDR_BITS);
