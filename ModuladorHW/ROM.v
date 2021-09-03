@@ -10,7 +10,7 @@
 // Target Devices: 
 // Tool versions: 
 // Description: 
-//
+// ROM de 3 salidas desfasadas 180 grados.
 // Dependencies: 
 //
 // Revision: 
@@ -18,18 +18,18 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-parameter ROM_WIDTH = 16;
-parameter ROM_ADDR_BITS = 16;
+
 module ROM(
 	input clk,
 	input en,
-	input [ROM_ADDR_BITS-1:0] addr, 
-	output[ROM_WIDTH-1:0]  out1,
-	output[ROM_WIDTH-1:0]  out2,
-	output[ROM_WIDTH-1:0]  out3);
+	input [15:0] addr, 
+	output[15:0]  out1,
+	output[15:0]  out2,
+	output[15:0]  out3);
  
 
-
+	parameter ROM_WIDTH = 16;
+	parameter ROM_ADDR_BITS = 16;
    (* ROM_STYLE="{AUTO | DISTRIBUTED | BLOCK}" *)
    reg [ROM_WIDTH-1:0] ROM [(2**ROM_ADDR_BITS)-1:0];
    wire [ROM_ADDR_BITS-1:0] addr2;

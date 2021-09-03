@@ -1,13 +1,13 @@
 import os
 
-file = open("triang.txt",'w')
-for t in range(0, (2**14)):
+file = open("triang",'w')
+for t in range(0, 0x4000):
     file.write(hex(t) + '\n')
-for t in range(((2**14) - 2), -1,-1):
+for t in range((0x4000 - 0x0002), -1,-1):
     file.write(hex(t) + '\n')
-for t in range(-1, -(2**14 -1),-1):
+for t in range(0xFFFF, 0xC000,-1):
     file.write(hex(t) + '\n')
-for t in range(-(2**14) + 1, -1):
+for t in range(0xC000, 0xFFFF):
     file.write(hex(t) + '\n')
-file.write(hex(t) + '\n')
+file.write(hex(0xFFFF) + '\n')
 file.close()
