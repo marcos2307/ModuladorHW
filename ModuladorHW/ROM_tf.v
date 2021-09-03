@@ -30,9 +30,9 @@ module ROM_tf;
 	reg [15:0] addr;
 
 	// Outputs
-	wire [3:0] out1;
-	wire [3:0] out2;
-	wire [3:0] out3;
+	wire [15:0] out1;
+	wire [15:0] out2;
+	wire [15:0] out3;
 
 	// Instantiate the Unit Under Test (UUT)
 	ROM uut (

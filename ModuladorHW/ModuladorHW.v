@@ -30,9 +30,9 @@ module ModuladorHW(
     input clk,   // clock
     input en,	  // enable
     input rst,	  // rst
-    output [3:0] out1,	// output for Level-1 H-bridge  
-    output [3:0] out2,  // output for Level-2 H-bridge
-    output [3:0] out3   // output for Level-3 H-bridge
+    output [1:0] out1,	// output for Level-1 H-bridge  
+    output [1:0] out2,  // output for Level-2 H-bridge
+    output [1:0] out3   // output for Level-3 H-bridge
     );
 	 
 endmodule
