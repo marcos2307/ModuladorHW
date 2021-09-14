@@ -27,8 +27,7 @@ module ModuladorHW_tf;
 	// Inputs
 	reg clk;
 	reg rst;
-	reg en;
-	reg signed [15:0] mod;
+	reg signed [7:0] mod;
 
 	// Outputs
 	wire [1:0] out1;
@@ -39,7 +38,6 @@ module ModuladorHW_tf;
 	ModuladorHW uut (
 		.clk(clk), 
 		.rst(rst), 
-		.en(en), 
 		.mod(mod), 
 		.out1(out1), 
 		.out2(out2), 
@@ -51,11 +49,9 @@ module ModuladorHW_tf;
 	// Initialize Inputs
 	clk = 0;
 	rst = 0;
-	en = 0;
-	mod = 16'sh0;
+	mod = 8'sh0;
 	#10 rst = 1;
 	#10 rst = 0;
-	#10 en = 1;
 	
 	end
 
@@ -64,8 +60,5 @@ module ModuladorHW_tf;
 		#10 clk = ~clk;
 	end
 		
-	
-	
-      
 endmodule
 

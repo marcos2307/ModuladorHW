@@ -26,17 +26,15 @@ module ROM_tf;
 
 	// Inputs
 	reg clk;
-	reg [15:0] addr;
+	reg [7:0] addr;
 
 	// Outputs
-	wire [15:0] out1;
-	wire [15:0] out2;
-	wire [15:0] out3;
+	wire [7:0] out1;
+	wire [7:0] out2;
+	wire [7:0] out3;
 
 	// Instantiate the Unit Under Test (UUT)
 	ROM uut (
-		.clk(clk), 
-		.en(en), 
 		.addr(addr), 
 		.out1(out1), 
 		.out2(out2), 
@@ -58,7 +56,7 @@ module ROM_tf;
 	
 	always@(posedge clk)
 	begin
-		addr = ((addr + 1)%(2**16));
+		addr = ((addr + 1)%(2**8));
 	end
 	
 endmodule
