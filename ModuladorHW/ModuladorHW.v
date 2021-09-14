@@ -28,11 +28,37 @@
 //////////////////////////////////////////////////////////////////////////////////
 module ModuladorHW(
     input clk,   // clock
-    input en,	  // enable
     input rst,	  // rst
+	 input signed [15:0] mod, // modulator
     output [1:0] out1,	// output for Level-1 H-bridge  
     output [1:0] out2,  // output for Level-2 H-bridge
     output [1:0] out3   // output for Level-3 H-bridge
     );
 	 
+	 
+	 // contador
+	 reg [15:0] cont;  
+	 always @(posedge clk or posedge rst)
+      if (rst)
+         cont <= 0;
+      else
+         cont <= cont + 1;
+	 //ROM
+	 wire signed [15:0] t1, t2, t3;
+	 ROM R1 (
+		.clk(clk),  
+		.addr(cont), 
+		.out1(t1), 
+		.out2(t2), 
+		.out3(t3)
+	);
+	//Comparador 1
+	assign out1[0] = mod>t1;
+	assign out1[1] = mod>t1;
+	assign out2[0] = mod>t2;
+	assign out2[1] = mod>t2;	
+	assign out3[0] = mod>t3;
+	assign out3[1] = mod>t3;
+
+	
 endmodule

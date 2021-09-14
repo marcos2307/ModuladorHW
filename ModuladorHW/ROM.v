@@ -10,7 +10,7 @@
 // Target Devices: 
 // Tool versions: 
 // Description: 
-// ROM de 3 salidas desfasadas 180 grados.
+// ROM de 3 salidas desfasadas 60 grados.
 // Dependencies: 
 //
 // Revision: 
@@ -21,24 +21,23 @@
 
 module ROM(
 	input clk,
-	input en,
 	input [15:0] addr, 
-	output[15:0]  out1,
-	output[15:0]  out2,
-	output[15:0]  out3);
+	output signed[15:0]  out1,
+	output signed[15:0]  out2,
+	output signed[15:0]  out3);
  
 
 	parameter ROM_WIDTH = 16;
 	parameter ROM_ADDR_BITS = 16;
    (* ROM_STYLE="{AUTO | DISTRIBUTED | BLOCK}" *)
-   reg [ROM_WIDTH-1:0] ROM [(2**ROM_ADDR_BITS)-1:0];
+   reg signed [ROM_WIDTH-1:0] ROM [(2**ROM_ADDR_BITS)-1:0];
    wire [ROM_ADDR_BITS-1:0] addr2;
 	wire [ROM_ADDR_BITS-1:0] addr3;
    initial
-      $readmemh("triang", ROM, 0, (2**ROM_ADDR_BITS)-1);
+      $readmemh("triang.txt", ROM, 0, (2**ROM_ADDR_BITS)-1);
 	
-	assign addr2 = (addr + 21845)%(2**ROM_ADDR_BITS);
-	assign addr3 = (addr + 43691)%(2**ROM_ADDR_BITS);
+	assign addr2 = (addr - 10923)%(2**ROM_ADDR_BITS);
+	assign addr3 = (addr - 21845)%(2**ROM_ADDR_BITS);
 	
    assign out1 = ROM[addr];
 	assign out2 = ROM[addr2];
