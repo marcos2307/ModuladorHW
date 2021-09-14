@@ -21,7 +21,7 @@ outputs:
 
 inputs: 
 
--3xmoduladora:3 bit signed
+-3xmoduladora:3x3 bit signed
 
 -reset: bit
 
