@@ -27,9 +27,9 @@ module ModuladorTrifasico_tf;
 	// Inputs
 	reg clk;
 	reg rst;
-	reg [2:0] phA;
-	reg [2:0] phB;
-	reg [2:0] phC;
+	reg signed [2:0] phA;
+	reg signed [2:0] phB;
+	reg signed [2:0] phC;
 
 	// Outputs
 	wire [5:0] outA;

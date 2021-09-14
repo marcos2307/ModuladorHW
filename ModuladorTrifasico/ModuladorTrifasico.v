@@ -30,8 +30,25 @@ module ModuladorTrifasico(
     );
 	 reg signed [7:0] m1, m2, m3;
 	 wire signed [1:0] A1, A2, A3, B1, B2, B3, C1, C2, C3;
+	 //divisor de clock
+   reg [3:0] acc;
+	wire clk_div;
+
+   always @ (posedge clk)
+      if (rst) 
+		begin
+         acc <= 0;
+		end
+      else
+		begin
+         acc <= acc + 1;
+		end
+		
+	assign clk_div = acc[3];
+
+	
 ModuladorHW M1(
-    .clk(clk),   // clock
+    .clk(clk_div),   // clock
     .rst(rst),	  // rst
 	 .mod(m1), // modulator
     .out1(A1),	// output for Level-1 H-bridge  
@@ -40,7 +57,7 @@ ModuladorHW M1(
     );
 	 
 ModuladorHW M2(
-    .clk(clk),   // clock
+    .clk(clk_div),   // clock
     .rst(rst),	  // rst
 	 .mod(m2), // modulator
     .out1(B1),	// output for Level-1 H-bridge  
@@ -49,7 +66,7 @@ ModuladorHW M2(
     );
 	 
 ModuladorHW M3(
-    .clk(clk),   // clock
+    .clk(clk_div),   // clock
     .rst(rst),	  // rst
 	 .mod(m3), // modulator
     .out1(C1),	// output for Level-1 H-bridge  
@@ -57,6 +74,7 @@ ModuladorHW M3(
     .out3(C3)   // output for Level-3 H-bridge
     );
 	 
+
 	
 	//3to8 bits. 
    always @(PhA)
@@ -91,6 +109,8 @@ ModuladorHW M3(
 			2: begin m3 = 40; end
 			3: begin m3 = 60; end
       endcase
+		
+	
 	//salidas
 	assign outA = {A3, A2, A1};
 	assign outB = {B3, B2, B1};

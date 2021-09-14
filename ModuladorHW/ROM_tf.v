@@ -26,6 +26,7 @@ module ROM_tf;
 
 	// Inputs
 	reg clk;
+	reg en;
 	reg [7:0] addr;
 
 	// Outputs
@@ -36,6 +37,8 @@ module ROM_tf;
 	// Instantiate the Unit Under Test (UUT)
 	ROM uut (
 		.addr(addr), 
+		.clk(clk),
+		.en(en),
 		.out1(out1), 
 		.out2(out2), 
 		.out3(out3)
@@ -45,6 +48,7 @@ module ROM_tf;
 	begin
 	// Initialize Inputs
 	clk = 0;
+	en = 1;
 	addr = 0;
 	end
 

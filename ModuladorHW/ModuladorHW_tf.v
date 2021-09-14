@@ -52,7 +52,9 @@ module ModuladorHW_tf;
 	mod = 8'sh0;
 	#10 rst = 1;
 	#10 rst = 0;
-	
+	#80 mod = 60;
+	#100 mod = -60;
+	#100 mod = 0;
 	end
 
 	always
